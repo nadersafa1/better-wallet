@@ -9,6 +9,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as Font from "expo-font";
 import "../global.css";
 import { queryClient } from "@/utils/trpc";
 import { NAV_THEME } from "@/lib/constants";
@@ -35,7 +36,24 @@ export default function RootLayout() {
 	const hasMounted = useRef(false);
 	const { colorScheme, isDarkColorScheme } = useColorScheme();
 	const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+	const [fontsLoaded, setFontsLoaded] = React.useState(false);
 	const { data: session, isPending } = authClient.useSession();
+
+	// Load Lato fonts
+	React.useEffect(() => {
+		async function loadFonts() {
+			await Font.loadAsync({
+				'Lato-Regular': require('../assets/fonts/Lato-Regular.ttf'),
+				'Lato-Bold': require('../assets/fonts/Lato-Bold.ttf'),
+				'Lato-Light': require('../assets/fonts/Lato-Light.ttf'),
+				'Lato-Black': require('../assets/fonts/Lato-Black.ttf'),
+				'Lato-Thin': require('../assets/fonts/Lato-Thin.ttf'),
+				
+			});
+			setFontsLoaded(true);
+		}
+		loadFonts();
+	}, []);
 
 	useIsomorphicLayoutEffect(() => {
 		if (hasMounted.current) {
@@ -50,7 +68,7 @@ export default function RootLayout() {
 		hasMounted.current = true;
 	}, []);
 
-	if (!isColorSchemeLoaded || isPending) {
+	if (!isColorSchemeLoaded || !fontsLoaded || isPending) {
 		return null;
 	}
 	return (
