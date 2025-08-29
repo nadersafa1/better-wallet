@@ -1,0 +1,36 @@
+# Next.js Web App Patterns
+
+## Next.js 15 Structure
+- Use App Router (not Pages Router)
+- Follow layout structure in [apps/web/src/app/layout.tsx](mdc:apps/web/src/app/layout.tsx)
+- Use server and client components appropriately
+
+## Component Patterns
+- Use shadcn/ui components from [apps/web/src/components/ui/](mdc:apps/web/src/components/ui/)
+- Follow form patterns from [apps/web/src/components/sign-in-form.tsx](mdc:apps/web/src/components/sign-in-form.tsx)
+- Use Tailwind CSS v4 for styling
+
+## Authentication
+- Use Better Auth for web authentication
+- Follow auth client setup in [apps/web/src/lib/auth-client.ts](mdc:apps/web/src/lib/auth-client.ts)
+- Use proper redirect handling for protected routes
+
+## tRPC Integration
+- Use tRPC with TanStack React Query
+- Follow setup in [apps/web/src/utils/trpc.ts](mdc:apps/web/src/utils/trpc.ts)
+- Use providers pattern from [apps/web/src/components/providers.tsx](mdc:apps/web/src/components/providers.tsx)
+
+## File Organization
+- App routes in `src/app/` directory
+- Components in `src/components/`
+- Utilities in `src/lib/` or `src/utils/`
+- UI components in `src/components/ui/`
+
+## Styling
+- Use Tailwind CSS v4
+- Use shadcn/ui component library
+- Follow theme provider setup in [apps/web/src/components/theme-provider.tsx](mdc:apps/web/src/components/theme-provider.tsx)
+description:
+globs:
+alwaysApply: true
+---

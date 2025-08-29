@@ -1,0 +1,36 @@
+# React Native/Expo Patterns
+
+## Expo Router Structure
+- Use Expo Router for navigation
+- Follow the layout structure in [apps/native/app/_layout.tsx](mdc:apps/native/app/_layout.tsx)
+- Use drawer and tab navigation patterns from existing layouts
+
+## Component Patterns
+- Use NativeWind for styling (Tailwind CSS for React Native)
+- Follow component patterns from [apps/native/components/sign-in.tsx](mdc:apps/native/components/sign-in.tsx)
+- Use React Native components with Tailwind classes
+
+## Authentication
+- Use Better Auth with Expo support
+- Follow auth client setup in [apps/native/lib/auth-client.ts](mdc:apps/native/lib/auth-client.ts)
+- Use Expo Secure Store for token storage
+
+## tRPC Integration
+- Use tRPC client with React Query
+- Follow setup in [apps/native/utils/trpc.ts](mdc:apps/native/utils/trpc.ts)
+- Handle loading and error states properly
+
+## File Organization
+- App routes in `app/` directory (Expo Router)
+- Components in `components/`
+- Utilities in `utils/` or `lib/`
+- Assets in `assets/`
+
+## Navigation
+- Use drawer navigation for main app structure
+- Use tab navigation for main sections
+- Follow existing navigation patterns in the app directory
+description:
+globs:
+alwaysApply: true
+---

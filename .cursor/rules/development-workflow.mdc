@@ -1,0 +1,40 @@
+# Development Workflow
+
+## Code Style
+- Use TypeScript for all files
+- Use arrow functions for components
+- Do not use semicolons
+- Use single quotes for strings
+- Use 2 spaces for indentation
+
+## Database Development
+- Use `npm run db:start` to start PostgreSQL with Docker
+- Use `npm run db:studio` to open Drizzle Studio
+- Use `npm run db:push` to push schema changes
+- Use `npm run db:generate` to generate migrations
+- UUID generation should be handled by database server
+
+## Type Safety
+- Infer types from tRPC returns rather than creating new interfaces
+- Use Zod for runtime validation
+- Leverage TypeScript's type inference capabilities
+
+## State Management
+- Use Zustand for client state (never Context API)
+- Use React Query for server state
+- Keep state as close to where it's used as possible
+
+## Testing
+- Write tests for critical business logic
+- Test authentication flows
+- Test form validation
+- Test tRPC endpoints
+
+## Performance
+- Use React Query for caching and background updates
+- Optimize bundle size with proper imports
+- Use proper loading states and error boundaries
+description:
+globs:
+alwaysApply: true
+---

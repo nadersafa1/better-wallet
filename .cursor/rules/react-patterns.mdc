@@ -1,0 +1,30 @@
+# React Component Patterns
+
+## Component Structure
+- Always use arrow functional components with default export
+- Use TypeScript for all components
+- Prefer named exports for utilities and hooks
+
+## State Management
+- Use Zustand for client state management (never use Context API)
+- Infer prop types from tRPC returns rather than defining new interfaces
+- Use React Query for server state management
+
+## Forms
+- Always use TanStack React Form for form handling
+- Always use Zod for form validation
+- Follow the pattern from [apps/web/src/components/sign-in-form.tsx](mdc:apps/web/src/components/sign-in-form.tsx)
+
+## Styling
+- Use Tailwind CSS for styling
+- Use NativeWind for React Native components
+- Follow the component structure from existing UI components in [apps/web/src/components/ui/](mdc:apps/web/src/components/ui/)
+
+## File Organization
+- Components go in `components/` directory
+- Utilities go in `utils/` or `lib/` directory
+- Type definitions should be co-located or in dedicated types files
+description:
+globs:
+alwaysApply: true
+---

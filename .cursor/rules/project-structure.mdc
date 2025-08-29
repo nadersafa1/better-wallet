@@ -1,0 +1,32 @@
+# Better Wallet Project Structure
+
+This is a monorepo using Turbo with three main applications:
+
+## Apps Structure
+- **Web App** ([apps/web/](mdc:apps/web/)): Next.js 15 with React 19, Tailwind CSS v4, tRPC, and Better Auth
+- **Native App** ([apps/native/](mdc:apps/native/)): Expo Router with React Native, NativeWind, tRPC, and Better Auth
+- **Server** ([apps/server/](mdc:server/)): Hono server with tRPC, Drizzle ORM, PostgreSQL, and Better Auth
+
+## Key Technologies
+- **Frontend**: React 19, TypeScript, Tailwind CSS
+- **Backend**: Hono, tRPC, Drizzle ORM, PostgreSQL
+- **Auth**: Better Auth with Expo support
+- **Forms**: TanStack React Form with Zod validation
+- **State Management**: Zustand (preferred over Context API)
+- **Build Tool**: Turbo for monorepo management
+
+## Database
+- PostgreSQL with Docker Compose setup
+- Drizzle ORM for type-safe database operations
+- UUID generation handled by database server (not client-side)
+
+## Development Commands
+- `npm run dev` - Start all apps in development
+- `npm run dev:web` - Start web app only
+- `npm run dev:native` - Start native app only  
+- `npm run dev:server` - Start server only
+- `npm run db:*` - Database management commands
+description:
+globs:
+alwaysApply: true
+---
