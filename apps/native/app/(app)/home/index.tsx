@@ -3,6 +3,7 @@ import type { Route } from "expo-router";
 import { Link, router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Background from "@/components/background";
+import { MainBalanceCard } from "@/components/home";
 
 const HomeScreen = () => {
   const mockBalance = "$3,500.00";
@@ -196,35 +197,7 @@ const HomeScreen = () => {
           </View>
         </View>
 
-        <View className="flex flex-col justify-center items-center  bg-white rounded-[36px] p-2 gap-4">
-          <View className="flex-1 w-full bg-primary rounded-[32px] px-8 py-5 gap-2">
-            <Text className="text-primary-foreground text-lg font-bold text-center">
-              USD
-            </Text>
-						<Text className="text-gray-600 text-xs font-regular text-center">
-1 USD = EUR 0.95 = GBR 0.79
-						</Text>
-            <Text className="text-primary-foreground text-6xl text-center font-bold">
-						$26,887.09
-            </Text>
-            <Text className="text-primary-foreground text-lg font-regular text-center ">+$421.03</Text>
-          </View>
-          <View className="flex-1 flex-row justify-around w-full px-8 py-4">
-            <TouchableOpacity className="flex flex-col items-center gap-2 w-1/3">
-              <AntDesign name="plus" size={20} color="#424242" />
-              <Text className="text-gray-500 text-sm">Income</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="flex flex-col items-center gap-2 w-1/3 border-r border-l border-gray-100">
-              <AntDesign name="swap" size={20} color="#424242" />
-              <Text className="text-gray-500 text-sm">Transfer</Text>
-            </TouchableOpacity>
-            <TouchableOpacity className="flex flex-col items-center gap-2 w-1/3">
-              <AntDesign name="minus" size={20} color="#424242" />
-              <Text className="text-gray-500 text-sm">Expense</Text>
-            </TouchableOpacity>
-
-          </View>
-        </View>
+        <MainBalanceCard />
 
         {/* Quick Actions Grid */}
         <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
