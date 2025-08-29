@@ -1,0 +1,374 @@
+{
+  "designSystem": {
+    "brandName": "Better Wallet",
+    "designPrinciples": {
+      "primary": "Clean, modern financial interface",
+      "colorScheme": "Mint gradient backgrounds with card-based layouts",
+      "typography": "Sans-serif, multiple weights, excellent readability"
+    }
+  },
+  
+  "colorPalette": {
+    "backgrounds": {
+      "primary": "linear-gradient(180deg, #A8E6CF 0%, #88D8A3 50%, #7FCDCD 100%)",
+      "cardPrimary": "#FFFFFF",
+      "cardSecondary": "#F8F9FA",
+      "accent": "linear-gradient(135deg, #FFE066 0%, #FFF59D 100%)",
+      "dark": "#1A1A1A"
+    },
+    "text": {
+      "primary": "#1A1A1A",
+      "secondary": "#6B7280",
+      "light": "#9CA3AF",
+      "white": "#FFFFFF",
+      "success": "#10B981",
+      "error": "#EF4444"
+    },
+    "borders": {
+      "light": "#E5E7EB",
+      "medium": "#D1D5DB",
+      "accent": "#FFE066"
+    },
+    "shadows": {
+      "card": "rgba(0, 0, 0, 0.08)",
+      "button": "rgba(0, 0, 0, 0.12)",
+      "elevation": "rgba(0, 0, 0, 0.16)"
+    }
+  },
+
+  "elementStyling": {
+    "screenBackgrounds": {
+      "mainBackground": {
+        "background": "linear-gradient(180deg, #A8E6CF 0%, #88D8A3 50%, #7FCDCD 100%)",
+        "application": "Full screen background",
+        "doNotApply": ["cards", "buttons", "icons", "text elements"]
+      }
+    },
+
+    "cards": {
+      "standard": {
+        "background": "#FFFFFF",
+        "borderRadius": "24px",
+        "shadow": "0 8px 32px rgba(0, 0, 0, 0.08)",
+        "border": "none",
+        "padding": "20px",
+        "application": "Transaction items, balance cards, currency cards",
+        "doNotApply": ["card content", "icons inside cards", "text inside cards"]
+      },
+      "highlighted": {
+        "background": "linear-gradient(135deg, #FFE066 0%, #FFF59D 100%)",
+        "borderRadius": "24px",
+        "shadow": "0 8px 32px rgba(0, 0, 0, 0.12)",
+        "border": "none",
+        "padding": "24px",
+        "application": "Main balance display card only",
+        "doNotApply": ["balance text", "currency icons", "other card types"]
+      },
+      "transactionItem": {
+        "background": "#FFFFFF",
+        "borderRadius": "16px",
+        "shadow": "0 4px 16px rgba(0, 0, 0, 0.06)",
+        "border": "none",
+        "padding": "16px",
+        "margin": "8px 0",
+        "application": "Individual transaction rows",
+        "doNotApply": ["transaction text", "avatars", "amounts"]
+      }
+    },
+
+    "buttons": {
+      "primary": {
+        "background": "#1A1A1A",
+        "color": "#FFFFFF",
+        "borderRadius": "16px",
+        "padding": "16px 24px",
+        "fontSize": "16px",
+        "fontWeight": "600",
+        "border": "none",
+        "shadow": "0 4px 16px rgba(0, 0, 0, 0.12)",
+        "application": "Send button, primary actions",
+        "hover": {
+          "background": "#333333",
+          "transform": "translateY(-1px)",
+          "shadow": "0 6px 20px rgba(0, 0, 0, 0.16)"
+        },
+        "doNotApply": ["button text separately", "icons inside buttons"]
+      },
+      "secondary": {
+        "background": "#F8F9FA",
+        "color": "#1A1A1A",
+        "borderRadius": "16px",
+        "padding": "16px 24px",
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "border": "1px solid #E5E7EB",
+        "application": "Secondary actions, cancel buttons",
+        "hover": {
+          "background": "#E5E7EB",
+          "borderColor": "#D1D5DB"
+        },
+        "doNotApply": ["primary actions", "destructive actions"]
+      },
+      "actionButtons": {
+        "background": "#FFFFFF",
+        "borderRadius": "20px",
+        "padding": "16px",
+        "border": "none",
+        "shadow": "0 4px 16px rgba(0, 0, 0, 0.08)",
+        "application": "Pay, Transfer, Receive buttons",
+        "iconColor": "#6B7280",
+        "textColor": "#1A1A1A",
+        "fontSize": "14px",
+        "fontWeight": "500",
+        "hover": {
+          "background": "#F8F9FA",
+          "transform": "translateY(-1px)"
+        },
+        "doNotApply": ["icon backgrounds", "separate text styling"]
+      }
+    },
+
+    "icons": {
+      "navigationIcons": {
+        "fill": "#6B7280",
+        "size": "24px",
+        "background": "none",
+        "application": "Header icons, navigation elements",
+        "hover": {
+          "fill": "#1A1A1A"
+        },
+        "doNotApply": ["icon containers", "background colors", "shadows"]
+      },
+      "actionIcons": {
+        "fill": "#6B7280",
+        "size": "20px",
+        "background": "none",
+        "application": "Icons within action buttons (Pay, Transfer, Receive)",
+        "doNotApply": ["button backgrounds", "icon containers"]
+      },
+      "currencyIcons": {
+        "background": "#1A1A1A",
+        "borderRadius": "12px",
+        "size": "40px",
+        "padding": "8px",
+        "application": "Add Currency button icon container only",
+        "iconFill": "#FFFFFF",
+        "doNotApply": ["currency symbol displays", "other action buttons"]
+      },
+      "avatarIcons": {
+        "borderRadius": "50%",
+        "size": "40px",
+        "border": "none",
+        "application": "User profile pictures, contact avatars",
+        "doNotApply": ["icon backgrounds", "button styling"]
+      }
+    },
+
+    "typography": {
+      "displayLarge": {
+        "fontSize": "48px",
+        "fontWeight": "700",
+        "color": "#1A1A1A",
+        "lineHeight": "1.1",
+        "letterSpacing": "-0.02em",
+        "application": "Main balance amount ($26,887.09)",
+        "doNotApply": ["secondary amounts", "labels", "descriptions"]
+      },
+      "displayMedium": {
+        "fontSize": "36px",
+        "fontWeight": "600",
+        "color": "#1A1A1A",
+        "lineHeight": "1.2",
+        "application": "Payment amounts ($2,101.70)",
+        "doNotApply": ["main balance", "transaction amounts"]
+      },
+      "headingLarge": {
+        "fontSize": "24px",
+        "fontWeight": "600",
+        "color": "#1A1A1A",
+        "lineHeight": "1.3",
+        "application": "Screen titles, section headers",
+        "doNotApply": ["balance amounts", "transaction amounts"]
+      },
+      "headingMedium": {
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "color": "#1A1A1A",
+        "lineHeight": "1.3",
+        "application": "Card titles, important labels",
+        "doNotApply": ["amounts", "descriptions"]
+      },
+      "bodyLarge": {
+        "fontSize": "16px",
+        "fontWeight": "500",
+        "color": "#1A1A1A",
+        "lineHeight": "1.4",
+        "application": "Primary text, names, important labels",
+        "doNotApply": ["amounts", "secondary information"]
+      },
+      "bodyMedium": {
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "color": "#6B7280",
+        "lineHeight": "1.4",
+        "application": "Secondary text, descriptions, timestamps",
+        "doNotApply": ["primary text", "amounts", "titles"]
+      },
+      "bodySmall": {
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "color": "#9CA3AF",
+        "lineHeight": "1.4",
+        "application": "Captions, minor details, helper text",
+        "doNotApply": ["important information", "amounts", "primary text"]
+      },
+      "amounts": {
+        "positive": {
+          "color": "#10B981",
+          "fontWeight": "600",
+          "application": "Positive transaction amounts, gains"
+        },
+        "negative": {
+          "color": "#EF4444",
+          "fontWeight": "600",
+          "application": "Negative transaction amounts, expenses"
+        },
+        "neutral": {
+          "color": "#1A1A1A",
+          "fontWeight": "600",
+          "application": "Balance displays, neutral amounts"
+        },
+        "doNotApply": ["regular text", "labels", "descriptions"]
+      }
+    },
+
+    "spacing": {
+      "screenPadding": "20px",
+      "cardPadding": "20px",
+      "buttonPadding": "16px 24px",
+      "iconPadding": "8px",
+      "sectionSpacing": "24px",
+      "itemSpacing": "12px",
+      "application": "Consistent spacing throughout interface"
+    },
+
+    "borderRadius": {
+      "large": "24px",
+      "medium": "16px", 
+      "small": "12px",
+      "round": "50%",
+      "application": {
+        "large": "Main cards, containers",
+        "medium": "Buttons, secondary cards",
+        "small": "Small elements, tags",
+        "round": "Avatars, circular icons"
+      }
+    },
+
+    "shadows": {
+      "cardShadow": {
+        "boxShadow": "0 8px 32px rgba(0, 0, 0, 0.08)",
+        "application": "Main cards, elevated surfaces",
+        "doNotApply": ["text", "icons", "backgrounds"]
+      },
+      "buttonShadow": {
+        "boxShadow": "0 4px 16px rgba(0, 0, 0, 0.12)",
+        "application": "Buttons, interactive elements",
+        "doNotApply": ["cards", "text", "icons"]
+      },
+      "subtleShadow": {
+        "boxShadow": "0 2px 8px rgba(0, 0, 0, 0.06)",
+        "application": "Small cards, list items",
+        "doNotApply": ["primary cards", "buttons"]
+      }
+    },
+
+    "states": {
+      "hover": {
+        "transform": "translateY(-1px)",
+        "shadowIncrease": "0 6px 20px rgba(0, 0, 0, 0.16)",
+        "application": "Interactive elements",
+        "doNotApply": ["static text", "backgrounds"]
+      },
+      "active": {
+        "transform": "translateY(0px)",
+        "shadowDecrease": "0 2px 8px rgba(0, 0, 0, 0.08)",
+        "application": "Pressed buttons",
+        "doNotApply": ["cards", "text"]
+      }
+    }
+  },
+
+  "componentPatterns": {
+    "transactionRow": {
+      "structure": "Avatar + Name/Details + Amount",
+      "styling": {
+        "container": "white card with subtle shadow",
+        "avatar": "circular, 40px",
+        "nameText": "bodyLarge, primary color",
+        "detailText": "bodyMedium, secondary color",
+        "amount": "amount styling based on positive/negative"
+      }
+    },
+    "currencyCard": {
+      "structure": "Currency symbol + Rate + Name",
+      "styling": {
+        "container": "white card with medium border radius",
+        "symbol": "large text, primary color",
+        "rate": "bodyLarge, primary color", 
+        "name": "bodyMedium, secondary color"
+      }
+    },
+    "balanceCard": {
+      "structure": "Currency info + Large amount + Change indicator",
+      "styling": {
+        "container": "yellow gradient background card",
+        "currency": "bodyMedium, secondary color",
+        "amount": "displayLarge, primary color",
+        "change": "amount styling based on positive/negative"
+      }
+    }
+  },
+
+  "doNotRules": {
+    "gradients": [
+      "DO NOT apply screen background gradient to cards",
+      "DO NOT apply card gradients to icons",
+      "DO NOT apply yellow gradient to anything except main balance card",
+      "DO NOT apply gradients to text elements"
+    ],
+    "shadows": [
+      "DO NOT apply shadows to text",
+      "DO NOT apply shadows to icons unless specifically noted",
+      "DO NOT apply card shadows to backgrounds",
+      "DO NOT apply button shadows to cards"
+    ],
+    "colors": [
+      "DO NOT use primary text color for secondary information",
+      "DO NOT use card background colors for screen backgrounds",
+      "DO NOT use button colors for card styling",
+      "DO NOT use success/error colors for neutral elements"
+    ],
+    "typography": [
+      "DO NOT use display fonts for body text",
+      "DO NOT use body fonts for amounts",
+      "DO NOT use amount colors for regular text",
+      "DO NOT mix font weights inappropriately"
+    ]
+  },
+
+  "responsivePatterns": {
+    "mobile": {
+      "screenPadding": "20px",
+      "cardSpacing": "12px",
+      "fontSize": "Use defined scale exactly",
+      "touchTargets": "Minimum 44px height"
+    }
+  },
+
+  "accessibilityRequirements": {
+    "colorContrast": "All text meets WCAG AA standards",
+    "focusStates": "Clear focus indicators on interactive elements",
+    "touchTargets": "Minimum 44px for interactive elements"
+  }
+}
