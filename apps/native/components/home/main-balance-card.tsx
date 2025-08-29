@@ -11,8 +11,8 @@ const MainBalanceCard = () => {
   };
 
   return (
-    <View className="flex flex-col justify-center items-center  bg-white rounded-[36px] p-2 gap-4">
-      <View className="flex-1 w-full bg-primary rounded-[32px] px-8 py-5 gap-2">
+    <View className="flex flex-col justify-center items-center  bg-white rounded-[36px] p-2 gap-2">
+      <View className="flex-1 w-full bg-primary rounded-[34px] px-8 py-5 gap-2">
         <Text className="text-primary-foreground text-lg font-bold text-center">
           USD
         </Text>
