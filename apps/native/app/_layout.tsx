@@ -8,6 +8,7 @@ import {
 } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 import { queryClient } from "@/utils/trpc";
 import { NAV_THEME } from "@/lib/constants";
@@ -15,6 +16,7 @@ import React, { useRef } from "react";
 import { useColorScheme } from "@/lib/use-color-scheme";
 import { Platform } from "react-native";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
+import { authClient } from "@/lib/auth-client";
 
 const LIGHT_THEME: Theme = {
 	...DefaultTheme,
@@ -26,13 +28,14 @@ const DARK_THEME: Theme = {
 };
 
 export const unstable_settings = {
-	initialRouteName: "(drawer)",
+	initialRouteName: "(auth)",
 };
 
 export default function RootLayout() {
 	const hasMounted = useRef(false);
 	const { colorScheme, isDarkColorScheme } = useColorScheme();
 	const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+	const { data: session, isPending } = authClient.useSession();
 
 	useIsomorphicLayoutEffect(() => {
 		if (hasMounted.current) {
@@ -47,22 +50,28 @@ export default function RootLayout() {
 		hasMounted.current = true;
 	}, []);
 
-	if (!isColorSchemeLoaded) {
+	if (!isColorSchemeLoaded || isPending) {
 		return null;
 	}
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-				<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-				<GestureHandlerRootView style={{ flex: 1 }}>
-					<Stack>
-						<Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-						<Stack.Screen
-							name="modal"
-							options={{ title: "Modal", presentation: "modal" }}
-						/>
-					</Stack>
-				</GestureHandlerRootView>
+				<SafeAreaProvider>
+					<StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+					<GestureHandlerRootView style={{ flex: 1 }}>
+						<Stack>
+							{!session ? (
+								<Stack.Screen name="(auth)" options={{ headerShown: false }} />
+							) : (
+								<Stack.Screen name="(app)" options={{ headerShown: false }} />
+							)}
+							<Stack.Screen
+								name="modal"
+								options={{ title: "Modal", presentation: "modal" }}
+							/>
+						</Stack>
+					</GestureHandlerRootView>
+				</SafeAreaProvider>
 			</ThemeProvider>
 		</QueryClientProvider>
 	);
