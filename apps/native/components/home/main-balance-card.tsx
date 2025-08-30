@@ -1,27 +1,40 @@
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { router } from "expo-router";
+import Modal from "../ui/modal";
 
 const MainBalanceCard = () => {
-  const [isBalanceShown, setIsBalanceShown] = useState(false);
+  const [isBalanceShown, setIsBalanceShown] = useState(true);
+  const [isBreakdownShown, setIsBreakdownShown] = useState(false);
 
   const handleBalanceToggle = () => {
     setIsBalanceShown((prev) => !prev);
   };
 
+  const handleBreakdownToggle = () => {
+    setIsBreakdownShown((prev) => !prev);
+  };
+
   return (
     <View className="flex flex-col justify-center items-center  bg-white rounded-[36px] p-2 gap-2">
-      <View className="flex-1 w-full bg-primary rounded-[34px] px-8 py-5 gap-2">
+      <Modal
+        visible={isBreakdownShown}
+        title="Balance Breakdown"
+        onClose={() => setIsBreakdownShown(false)}
+      >
+        <Text>Hello</Text>
+      </Modal>
+      <View className="flex-1 w-full bg-primary rounded-[34px] p-5 gap-2">
         <Text className="text-primary-foreground text-lg font-bold text-center">
           USD
         </Text>
         <TouchableOpacity
           onPress={handleBalanceToggle}
-          className="absolute right-2 top-2 p-4"
+          className="absolute right-4 top-4 p-2"
         >
-          <Feather
-            name={isBalanceShown ? "eye" : "eye-off"}
+          <Ionicons
+            name={isBalanceShown ? "eye-outline" : "eye-off-outline"}
             size={18}
             color="#424242"
           />
@@ -29,18 +42,22 @@ const MainBalanceCard = () => {
         <Text className="text-gray-600 text-xs font-regular text-center">
           1 USD = EUR 0.95 = GBR 0.79
         </Text>
-        <View className="relative">
+        <View className={isBalanceShown ? "opacity-100" : "opacity-20"}>
+          <View className="flex justify-center items-center">
+            <Text
+              className={`text-primary-foreground text-6xl text-center font-bold`}
+            >
+              $26,887.09
+            </Text>
+            <TouchableOpacity
+              className="absolute -right-1 p-2"
+              onPress={handleBreakdownToggle}
+            >
+              <Ionicons name="pie-chart-outline" size={18} color="#424242" />
+            </TouchableOpacity>
+          </View>
           <Text
-            className={`text-primary-foreground text-6xl text-center font-bold ${
-              isBalanceShown ? "opacity-100" : "opacity-20"
-            }`}
-          >
-            $26,887.09
-          </Text>
-          <Text
-            className={`text-primary-foreground text-lg font-regular text-center ${
-              isBalanceShown ? "opacity-100" : "opacity-20"
-            }`}
+            className={`text-primary-foreground text-lg font-regular text-center`}
           >
             +$421.03
           </Text>
@@ -57,11 +74,13 @@ const MainBalanceCard = () => {
           }}
           activeOpacity={0.8}
         >
-          <AntDesign name="plus" size={20} color="#424242" />
+          <Ionicons name="add-outline" size={22} color="#424242" />
+          {/* <AntDesign name="plus" size={20} color="#424242" /> */}
           <Text className="text-gray-500 text-sm">Income</Text>
         </TouchableOpacity>
         <TouchableOpacity className="flex flex-col items-center gap-2 w-1/3 border-r border-l border-gray-100">
-          <AntDesign name="swap" size={20} color="#424242" />
+          <Ionicons name="swap-horizontal-outline" size={20} color="#424242" />
+          {/* <AntDesign name="swap" size={20} color="#424242" /> */}
           <Text className="text-gray-500 text-sm">Transfer</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -71,7 +90,8 @@ const MainBalanceCard = () => {
           }}
           activeOpacity={0.8}
         >
-          <AntDesign name="minus" size={20} color="#424242" />
+          <Ionicons name="remove-outline" size={22} color="#424242" />
+          {/* <AntDesign name="minus" size={20} color="#424242" /> */}
           <Text className="text-gray-500 text-sm">Expense</Text>
         </TouchableOpacity>
       </View>
