@@ -4,32 +4,38 @@ import { AntDesign, MaterialIcons, FontAwesome5 } from '@expo/vector-icons'
 import IncomeExpenseSummary from './income-expense-summary'
 
 const TransactionTags = () => {
-  const [selectedMonth, setSelectedMonth] = useState(new Date())
-  const flatListRef = useRef<FlatList>(null)
-
-  const generateMonths = () => {
+  const generateMonths = ({
+    startDate = new Date(),
+    prev = 6,
+    next = 5
+  }: {
+    startDate?: Date
+    prev?: number
+    next?: number
+  }) => {
     const months = []
-    const currentDate = new Date()
 
-    // Generate 12 months (6 before current, current, 5 after)
-    for (let i = -6; i <= 5; i++) {
-      const date = new Date(currentDate.getFullYear(), currentDate.getMonth() + i, 1)
+    // Generate months (prev before current, current, next after)
+    for (let i = next; i >= -prev; i--) {
+      const date = new Date(startDate.getFullYear(), startDate.getMonth() + i, 1)
       months.push(date)
     }
 
     return months
   }
-
-  const months = generateMonths()
+  const [availableMonths, setAvailableMonths] = useState<Date[]>(
+    generateMonths({ startDate: new Date(), prev: 6, next: 5 })
+  )
+  const [selectedMonth, setSelectedMonth] = useState(new Date())
+  const flatListRef = useRef<FlatList>(null)
 
   const getMonthDisplay = (date: Date) => {
     const month = date.toLocaleDateString('en-US', { month: 'short' })
     const year = date.getFullYear()
-    const currentYear = new Date().getFullYear()
 
     return {
       month,
-      year: year === currentYear ? year.toString().slice(-2) : year.toString(),
+      year: year.toString(),
       fullYear: year
     }
   }
@@ -45,6 +51,14 @@ const TransactionTags = () => {
 
   const handleMonthSelect = (date: Date) => {
     setSelectedMonth(date)
+    flatListRef.current?.scrollToIndex({
+      index: availableMonths.findIndex(
+        (month) => month.getMonth() === date.getMonth() && month.getFullYear() === date.getFullYear()
+      ),
+      animated: true,
+      viewPosition: 0.5
+      // viewOffset: 10
+    })
   }
 
   const renderMonthItem = ({ item, index }: { item: Date; index: number }) => {
@@ -55,7 +69,7 @@ const TransactionTags = () => {
     return (
       <TouchableOpacity
         onPress={() => handleMonthSelect(item)}
-        className={`mx-1 w-15 px-4 py-2 rounded-xl ${isSelected ? 'bg-primary' : 'bg-gray-100'}`}
+        className={`mx-1 w-16 px-4 py-2 rounded-xl ${isSelected ? 'bg-primary' : 'bg-gray-100'}`}
         activeOpacity={0.7}
       >
         <Text className={`text-center font-semibold ${isSelected ? 'text-primary-foreground' : 'text-gray-700'}`}>
@@ -72,34 +86,28 @@ const TransactionTags = () => {
 
   return (
     <View className='flex flex-col gap-4'>
-      {/* Header with month selection */}
-      {/* <View className="flex-row items-center justify-between">
-        <Text className="text-gray-900 text-lg font-semibold">
-          Monthly Overview
-        </Text>
-        <TouchableOpacity
-          className="p-2 bg-gray-50 rounded-lg"
-          activeOpacity={0.7}
-        >
-          <AntDesign name="bars" size={16} color="#6B7280" />
-        </TouchableOpacity>
-      </View> */}
-
       {/* Horizontal month list */}
       <FlatList
         ref={flatListRef}
-        data={months}
+        data={availableMonths}
         renderItem={renderMonthItem}
         keyExtractor={(item) => item.toISOString()}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 16 }}
         initialScrollIndex={6} // Start at current month
         getItemLayout={(data, index) => ({
-          length: 80, // Approximate item width
-          offset: 80 * index,
+          length: 64, // Approximate item width
+          offset: 64 * index,
           index
         })}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => {
+          setAvailableMonths((prev) => [
+            ...prev,
+            ...generateMonths({ startDate: availableMonths[availableMonths.length - 1], prev: 5, next: -1 })
+          ])
+        }}
+        inverted
       />
 
       <IncomeExpenseSummary />
