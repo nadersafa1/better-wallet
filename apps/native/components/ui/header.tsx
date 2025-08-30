@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, typography, spacing } from '@/lib/design-system';
+import { typography } from "@/lib/design-system";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 
 interface HeaderProps {
   title: string;
@@ -12,8 +12,6 @@ interface HeaderProps {
     icon: keyof typeof Ionicons.glyphMap;
     onPress: () => void;
   };
-  showThemeToggle?: boolean;
-  onThemeToggle?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -21,49 +19,37 @@ const Header: React.FC<HeaderProps> = ({
   showBack = false,
   onBack,
   rightAction,
-  showThemeToggle = false,
-  onThemeToggle,
 }) => {
-  const insets = useSafeAreaInsets();
-  
   return (
-    <View 
-      className={`${colors.backgrounds.cardPrimary} ${spacing.screen} flex-row items-center justify-between`}
-      style={{ paddingTop: insets.top + 16, paddingBottom: 16 }}
-    >
-      <View className="flex-row items-center flex-1">
+    <View className="flex-row items-center justify-between gap-4">
+      <View>
         {showBack && (
           <TouchableOpacity
-            onPress={onBack}
-            className="mr-3 p-2"
+            onPress={onBack ?? (() => router.back())}
+            className="p-1"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
+            <Ionicons name="arrow-back-outline" size={30} color="#424242" />
           </TouchableOpacity>
         )}
-        <Text className={`${typography.headingLarge} flex-1`} numberOfLines={1}>
+      </View>
+      <View>
+        <Text
+          className={`${typography.headingLarge} text-center`}
+          numberOfLines={1}
+        >
           {title}
         </Text>
       </View>
-      
-      <View className="flex-row items-center space-x-2">
-        {showThemeToggle && (
-          <TouchableOpacity
-            onPress={onThemeToggle}
-            className="p-2"
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <Ionicons name="moon" size={24} color="#6B7280" />
-          </TouchableOpacity>
-        )}
-        
+
+      <View>
         {rightAction && (
           <TouchableOpacity
             onPress={rightAction.onPress}
-            className="p-2"
+            className="p-1"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Ionicons name={rightAction.icon} size={24} color="#6B7280" />
+            <Ionicons name={rightAction.icon} size={30} color="#424242" />
           </TouchableOpacity>
         )}
       </View>

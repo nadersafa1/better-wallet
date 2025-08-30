@@ -1,12 +1,24 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Modal as RNModal, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { colors, typography, spacing, borderRadius, components } from '@/lib/design-system';
+import React from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal as RNModal,
+  ScrollView,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  colors,
+  typography,
+  spacing,
+  borderRadius,
+  components,
+} from "@/lib/design-system";
 
 interface ModalButton {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'destructive';
+  variant?: "primary" | "secondary" | "destructive";
 }
 
 interface ModalProps {
@@ -26,11 +38,11 @@ const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
 }) => {
-  const getButtonStyle = (variant: ModalButton['variant'] = 'primary') => {
+  const getButtonStyle = (variant: ModalButton["variant"] = "primary") => {
     switch (variant) {
-      case 'secondary':
+      case "secondary":
         return components.button.secondary;
-      case 'destructive':
+      case "destructive":
         return `${colors.text.error} ${borderRadius.medium} ${spacing.button} text-base font-semibold border border-red-200`;
       default:
         return components.button.primary;
@@ -45,7 +57,9 @@ const Modal: React.FC<ModalProps> = ({
       onRequestClose={onClose}
     >
       <View className="flex-1 bg-black/50 justify-center items-center p-5">
-        <View className={`${colors.backgrounds.cardPrimary} ${borderRadius.large} ${colors.shadows.card} w-full max-w-sm`}>
+        <View
+          className={`${colors.backgrounds.cardPrimary} ${borderRadius.large} ${colors.shadows.card} w-full max-w-sm`}
+        >
           {/* Header */}
           <View className={`${spacing.card} border-b border-[#E5E7EB]`}>
             <View className="flex-row items-center justify-between">
@@ -78,14 +92,24 @@ const Modal: React.FC<ModalProps> = ({
 
           {/* Buttons */}
           {buttons.length > 0 && (
-            <View className={`${spacing.card} border-t border-[#E5E7EB] space-y-3`}>
+            <View
+              className={`${spacing.card} border-t border-[#E5E7EB] space-y-3`}
+            >
               {buttons.map((button, index) => (
                 <TouchableOpacity
                   key={index}
                   onPress={button.onPress}
                   className={getButtonStyle(button.variant)}
                 >
-                  <Text className={`text-center ${button.variant === 'destructive' ? 'text-red-600' : button.variant === 'secondary' ? colors.text.primary : colors.text.white}`}>
+                  <Text
+                    className={`text-center ${
+                      button.variant === "destructive"
+                        ? "text-red-600"
+                        : button.variant === "secondary"
+                        ? colors.text.primary
+                        : colors.text.white
+                    }`}
+                  >
                     {button.title}
                   </Text>
                 </TouchableOpacity>

@@ -1,2 +1,10 @@
-export { default as MainBalanceCard } from "./main-balance-card";
 export { default as HomeHeader } from "./home-header";
+export { default as MainBalanceCard } from "./main-balance-card";
+export { default as TransactionTags } from "./transaction-tags";
+export { default as BalanceBreakdown } from "./balance-breakdown";
+export { default as NetWorthCard } from "./net-worth-card";
+export { default as PortfolioTabs } from "./portfolio-tabs";
+export { default as TotalAmountCard } from "./total-amount-card";
+export { default as AccountSection } from "./account-section";
+export { default as AccountItem } from "./account-item";
+export { default as DonutChart } from "./donut-chart";  

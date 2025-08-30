@@ -3,7 +3,11 @@ import type { Route } from "expo-router";
 import { Link, router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Background from "@/components/background";
-import { HomeHeader, MainBalanceCard } from "@/components/home";
+import {
+  HomeHeader,
+  MainBalanceCard,
+  TransactionTags,
+} from "@/components/home";
 
 const HomeScreen = () => {
   const mockBalance = "$3,500.00";
@@ -56,6 +60,12 @@ const HomeScreen = () => {
       color: "#C8E6C9",
     },
     {
+      title: "Portfolio",
+      icon: "pie-chart",
+      route: "/home/balance-breakdown",
+      color: "#FFB3BA",
+    },
+    {
       title: "Settings",
       icon: "settings",
       route: "/home/settings",
@@ -65,82 +75,81 @@ const HomeScreen = () => {
 
   return (
     <Background>
-      <ScrollView className="mx-5 pt-6" showsVerticalScrollIndicator={false}>
-        <View className="flex flex-1 gap-4">
-          <HomeHeader />
-          <MainBalanceCard />
+      <HomeHeader />
+      <MainBalanceCard />
+      <TransactionTags />
 
-          {/* Quick Actions Grid */}
-          <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: "600",
-                color: "#000000",
-                marginBottom: 16,
-              }}
-            >
-              Quick Actions
-            </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-              }}
-            >
-              {quickActions.map((action) => (
-                <Link key={action.title} href={action.route as Route} asChild>
-                  <TouchableOpacity
-                    style={{
-                      width: "48%",
-                      backgroundColor: "#FFFFFF",
-                      borderRadius: 16,
-                      padding: 20,
-                      marginBottom: 12,
-                      alignItems: "center",
-                      shadowColor: "#000",
-                      shadowOffset: { width: 0, height: 2 },
-                      shadowOpacity: 0.06,
-                      shadowRadius: 8,
-                      elevation: 2,
-                    }}
-                  >
-                    <View
-                      style={{
-                        width: 48,
-                        height: 48,
-                        borderRadius: 24,
-                        backgroundColor: action.color,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginBottom: 12,
-                      }}
-                    >
-                      <Ionicons
-                        name={action.icon as keyof typeof Ionicons.glyphMap}
-                        size={24}
-                        color="#424242"
-                      />
-                    </View>
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontWeight: "600",
-                        color: "#424242",
-                        textAlign: "center",
-                      }}
-                    >
-                      {action.title}
-                    </Text>
-                  </TouchableOpacity>
-                </Link>
-              ))}
-            </View>
-          </View>
+      {/* Quick Actions Grid */}
+      <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: "600",
+            color: "#000000",
+            marginBottom: 16,
+          }}
+        >
+          Quick Actions
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          {quickActions.map((action) => (
+            <Link key={action.title} href={action.route as Route} asChild>
+              <TouchableOpacity
+                style={{
+                  width: "48%",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: 16,
+                  padding: 20,
+                  marginBottom: 12,
+                  alignItems: "center",
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.06,
+                  shadowRadius: 8,
+                  elevation: 2,
+                }}
+              >
+                <View
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 24,
+                    backgroundColor: action.color,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: 12,
+                  }}
+                >
+                  <Ionicons
+                    name={action.icon as keyof typeof Ionicons.glyphMap}
+                    size={24}
+                    color="#424242"
+                  />
+                </View>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    fontWeight: "600",
+                    color: "#424242",
+                    textAlign: "center",
+                  }}
+                >
+                  {action.title}
+                </Text>
+              </TouchableOpacity>
+            </Link>
+          ))}
+        </View>
+      </View>
 
-          {/* Recent Accounts */}
-          <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
+      {/* Recent Accounts */}
+      {/* <View>
             <View
               style={{
                 flexDirection: "row",
@@ -227,109 +236,104 @@ const HomeScreen = () => {
                 </Text>
               </TouchableOpacity>
             ))}
-          </View>
+          </View> */}
 
-          {/* Recent Transactions */}
-          <View style={{ paddingHorizontal: 20, marginBottom: 32 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 16,
-              }}
-            >
+      {/* Recent Transactions */}
+      <View style={{ marginBottom: 32 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 16,
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "600", color: "#000000" }}>
+            Recent Transactions
+          </Text>
+          <Link href="/home/transactions" asChild>
+            <TouchableOpacity>
               <Text
-                style={{ fontSize: 20, fontWeight: "600", color: "#000000" }}
-              >
-                Recent Transactions
-              </Text>
-              <Link href="/home/transactions" asChild>
-                <TouchableOpacity>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: "#424242",
-                      fontWeight: "600",
-                    }}
-                  >
-                    View All
-                  </Text>
-                </TouchableOpacity>
-              </Link>
-            </View>
-            {[
-              {
-                id: "1",
-                description: "Grocery Store",
-                amount: "-$75.50",
-                date: "Today",
-                category: "Food",
-              },
-              {
-                id: "2",
-                description: "Salary Deposit",
-                amount: "+$2,500.00",
-                date: "Yesterday",
-                category: "Income",
-              },
-              {
-                id: "3",
-                description: "Gas Station",
-                amount: "-$45.00",
-                date: "Mar 14",
-                category: "Transport",
-              },
-            ].map((transaction) => (
-              <TouchableOpacity
-                key={transaction.id}
                 style={{
-                  backgroundColor: "#FFFFFF",
-                  borderRadius: 16,
-                  padding: 16,
-                  marginBottom: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.06,
-                  shadowRadius: 8,
-                  elevation: 2,
+                  fontSize: 14,
+                  color: "#424242",
+                  fontWeight: "600",
                 }}
               >
-                <View style={{ flex: 1 }}>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      fontWeight: "600",
-                      color: "#000000",
-                      marginBottom: 4,
-                    }}
-                  >
-                    {transaction.description}
-                  </Text>
-                  <Text style={{ fontSize: 14, color: "#757575" }}>
-                    {transaction.date} • {transaction.category}
-                  </Text>
-                </View>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: "600",
-                    color: transaction.amount.startsWith("+")
-                      ? "#4CAF50"
-                      : "#F44336",
-                  }}
-                >
-                  {transaction.amount}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <View style={{ height: 70 }} />
+                View All
+              </Text>
+            </TouchableOpacity>
+          </Link>
         </View>
-      </ScrollView>
+        {[
+          {
+            id: "1",
+            description: "Grocery Store",
+            amount: "-$75.50",
+            date: "Today",
+            category: "Food",
+          },
+          {
+            id: "2",
+            description: "Salary Deposit",
+            amount: "+$2,500.00",
+            date: "Yesterday",
+            category: "Income",
+          },
+          {
+            id: "3",
+            description: "Gas Station",
+            amount: "-$45.00",
+            date: "Mar 14",
+            category: "Transport",
+          },
+        ].map((transaction) => (
+          <TouchableOpacity
+            key={transaction.id}
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: 16,
+              padding: 16,
+              marginBottom: 8,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.06,
+              shadowRadius: 8,
+              elevation: 2,
+            }}
+          >
+            <View style={{ flex: 1 }}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "600",
+                  color: "#000000",
+                  marginBottom: 4,
+                }}
+              >
+                {transaction.description}
+              </Text>
+              <Text style={{ fontSize: 14, color: "#757575" }}>
+                {transaction.date} • {transaction.category}
+              </Text>
+            </View>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "600",
+                color: transaction.amount.startsWith("+")
+                  ? "#4CAF50"
+                  : "#F44336",
+              }}
+            >
+              {transaction.amount}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </Background>
   );
 };
