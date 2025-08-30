@@ -80,7 +80,7 @@ const HomeScreen = () => {
       <TransactionTags />
 
       {/* Quick Actions Grid */}
-      <View style={{ paddingHorizontal: 20, marginBottom: 24 }}>
+      <View>
         <Text
           style={{
             fontSize: 20,
@@ -149,97 +149,93 @@ const HomeScreen = () => {
       </View>
 
       {/* Recent Accounts */}
-      {/* <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 16,
-              }}
-            >
+      <View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 16,
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "600", color: "#000000" }}>
+            Your Accounts
+          </Text>
+          <Link href="/home/accounts" asChild>
+            <TouchableOpacity>
               <Text
-                style={{ fontSize: 20, fontWeight: "600", color: "#000000" }}
-              >
-                Your Accounts
-              </Text>
-              <Link href="/home/accounts" asChild>
-                <TouchableOpacity>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: "#424242",
-                      fontWeight: "600",
-                    }}
-                  >
-                    View All
-                  </Text>
-                </TouchableOpacity>
-              </Link>
-            </View>
-            {mockAccounts.map((account) => (
-              <TouchableOpacity
-                key={account.id}
                 style={{
-                  backgroundColor: "#FFFFFF",
-                  borderRadius: 16,
-                  padding: 16,
-                  marginBottom: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  shadowColor: "#000",
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.06,
-                  shadowRadius: 8,
-                  elevation: 2,
+                  fontSize: 14,
+                  color: "#424242",
+                  fontWeight: "600",
                 }}
               >
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <View
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 20,
-                      backgroundColor:
-                        account.type === "checking" ? "#A8D5BA" : "#FFE082",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      marginRight: 12,
-                    }}
-                  >
-                    <Ionicons
-                      name={account.type === "checking" ? "wallet" : "save"}
-                      size={20}
-                      color="#424242"
-                    />
-                  </View>
-                  <View>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        fontWeight: "600",
-                        color: "#000000",
-                      }}
-                    >
-                      {account.name}
-                    </Text>
-                    <Text style={{ fontSize: 14, color: "#757575" }}>
-                      {account.type === "checking" ? "Checking" : "Savings"}
-                    </Text>
-                  </View>
-                </View>
+                View All
+              </Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
+        {mockAccounts.map((account) => (
+          <TouchableOpacity
+            key={account.id}
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: 16,
+              padding: 16,
+              marginBottom: 8,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.06,
+              shadowRadius: 8,
+              elevation: 2,
+            }}
+          >
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20,
+                  backgroundColor:
+                    account.type === "checking" ? "#A8D5BA" : "#FFE082",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginRight: 12,
+                }}
+              >
+                <Ionicons
+                  name={account.type === "checking" ? "wallet" : "save"}
+                  size={20}
+                  color="#424242"
+                />
+              </View>
+              <View>
                 <Text
-                  style={{ fontSize: 18, fontWeight: "600", color: "#000000" }}
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "600",
+                    color: "#000000",
+                  }}
                 >
-                  {account.balance}
+                  {account.name}
                 </Text>
-              </TouchableOpacity>
-            ))}
-          </View> */}
+                <Text style={{ fontSize: 14, color: "#757575" }}>
+                  {account.type === "checking" ? "Checking" : "Savings"}
+                </Text>
+              </View>
+            </View>
+            <Text style={{ fontSize: 18, fontWeight: "600", color: "#000000" }}>
+              {account.balance}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
       {/* Recent Transactions */}
-      <View style={{ marginBottom: 32 }}>
+      <View>
         <View
           style={{
             flexDirection: "row",

@@ -15,7 +15,7 @@ const Background = ({ children }: { children: React.ReactNode }) => {
       <ScrollView className="flex-1 mx-5" showsVerticalScrollIndicator={false}>
         <View className="flex-1 gap-4">{children}</View>
 
-        <View className="h-20" />
+        <View className="h-32" />
       </ScrollView>
     </LinearGradient>
   );
