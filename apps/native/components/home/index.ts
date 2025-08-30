@@ -1,6 +1,7 @@
 export { default as HomeHeader } from "./home-header";
 export { default as MainBalanceCard } from "./main-balance-card";
 export { default as TransactionTags } from "./transaction-tags";
+export { default as IncomeExpenseSummary } from "./income-expense-summary";
 export { default as BalanceBreakdown } from "./balance-breakdown";
 export { default as NetWorthCard } from "./net-worth-card";
 export { default as PortfolioTabs } from "./portfolio-tabs";
